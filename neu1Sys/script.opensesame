@@ -291,7 +291,7 @@ define inline_script rotationImg_script
 		#nodes=["überhaupt nicht 1","2", "3", "4", "5", "6","7sehr gut"], click_accepts=True,
 		#orientation=u'horizontal', var='result')
 		rating_scale = RatingScale( 
-		low=1, high=7, precision=1, scale= None, labels=('überhaupt nicht','sehr gut'),
+		low=1, high=7, precision=1, labels=('überhaupt nicht','sehr gut'),
 		markerColor='DarkRed', respKeys=('1','2','3','4','5','6','7'),
 		acceptKeys=('1','2','3','4','5','6','7'), var='result')
 		form.set_widget(rating_scale, (0, 2))
@@ -305,7 +305,7 @@ define inline_script rotationImg_script
 		#nodes=["überhaupt nicht\ninteressant 1","2", "3", "4", "5", "6","7sehr interessant"], click_accepts=True,
 		#orientation=u'horizontal', var='result')
 		rating_scale = RatingScale( 
-		low=1, high=7, precision=1, scale= None, labels=('überhaupt nicht\ninteressant','sehr interessant'),
+		low=1, high=7, precision=1, labels=('überhaupt nicht\ninteressant','sehr interessant'),
 		markerColor='DarkRed', respKeys=('1','2','3','4','5','6','7'),
 		acceptKeys=('1','2','3','4','5','6','7'), var='result')
 		form.set_widget(rating_scale, (0, 2))
