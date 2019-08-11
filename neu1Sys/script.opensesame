@@ -152,6 +152,7 @@ define inline_script panasb_script
 	# Hide PsychoPy window
 	win.winHandle.set_fullscreen(False)
 	win.winHandle.set_visible(False)
+	# Show keyboard
 	my_keyboard = keyboard(timeout=1000)
 	# Show mouse
 	my_mouse = mouse()
