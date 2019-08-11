@@ -26,7 +26,7 @@ set font_size 18
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "C:\\Users\\Xiaochu\\Desktop"
+set experiment_path "C:/Users/Mihai/Documents/GitHub/xiaochu/neu1Sys"
 set disable_garbage_collection no
 set description "The main experiment item"
 set coordinates uniform
@@ -45,12 +45,8 @@ define form_consent Einwilligungserklaerung
 	set form_title "<b>Begrüßung</b>"
 	__form_text__
 	Sehr geehrte Teilnehmerin, sehr geehrter Teilnehmer,
-	
-	
 	Willkommen zu unserem Experiment!
-	
-	Das Experiment besteht aus drei Teilen. In dem ersten Teil füllen Sie bitte einen kurzen Fragebogen aus. Danach bewerten Sie bitte in dem zweiten Teil die Muster auf dem Bildschirm. In dem letzten Teil füllen Sie bitte einen schriftlichen Fragebogen nach dem Computertest aus. 
-	
+	Das Experiment besteht aus drei Teilen. In dem ersten Teil füllen Sie bitte einen kurzen Fragebogen aus. Danach bewerten Sie bitte in dem zweiten Teil die Muster auf dem Bildschirm. In dem letzten Teil füllen Sie bitte einen schriftlichen Fragebogen nach dem Computertest aus.
 	Drücken Sie jetzt bitte "JA", um das Experiment zu beginnen; wenn Sie das Experiment abbrechen möchten, drücken Sie bitte "NEIN".
 	__end__
 	set description "A simple consent form"
@@ -77,10 +73,7 @@ define form_text_display Instruktion1
 	set form_title "<b>Teil 1</b>"
 	__form_text__
 	Die folgenden Wörter beschreiben unterschiedliche Gefühle und Empfindungen. Lesen Sie bitte jedes Wort und wählen Sie dann in die Skala neben jedem Wort die Intensität aus.
-	
 	Sie haben die Möglichkeit, zwischen fünf Abstufungen zu wählen. Geben Sie bitte an, wie Sie sich <b>momentan</b> gefühlt haben.
-	
-	
 	Drücken Sie bitte jetzt "Start" um fortzufahren.
 	__end__
 	set description "A simple text display form"
@@ -101,11 +94,7 @@ define form_text_display Instruktion2
 	set form_title "<b>Teil 2<b>"
 	__form_text__
 	Im kommenden Teil werden die verschiedenen Muster einzeln auf dem Bildschirm präsentiert. Bewerten Sie bitte jedes Muster nach der Skala "Gefallen" und "Interessantheit" mit der Maus.
-	
-	
 	Wenn sie Fragen haben oder weitere Informationen benötigen, heben Sie bitte die Hand.
-	
-	
 	Drücken Sie jetzt bitte "OK" um fortzufahren.
 	__end__
 	set description "A simple text display form"
@@ -136,8 +125,6 @@ define form_text_display goodbye
 	set form_title "<b>Vielen Dank<b>"
 	__form_text__
 	Ich danke Ihnen für die Teilnahme und Interesse.
-	
-	
 	Bitten geben Sie der Versuchsleiterin/dem Versuchsleiter ein kurzes Zeichen, um die letzten schriflichen Aufgabe zu schaffen.
 	__end__
 	set description "A simple text display form"
@@ -161,21 +148,16 @@ define inline_script panasb_script
 	set description "Executes Python code"
 	___run__
 	# Panas B (Andreas Gartus, 2017)
-	
 	import Tkinter
-	
 	# Hide PsychoPy window
 	win.winHandle.set_fullscreen(False)
 	win.winHandle.set_visible(False)
-	
 	# Show mouse
 	my_mouse = mouse()
 	my_mouse.show_cursor(show=True)
-	
 	def createEmptyLine(row_index):
 		emptyLine = Tkinter.Label(master,text="",font=(None,12))
 		emptyLine.grid(row=row_index,column=0,sticky="W",padx=5,pady=1)
-	
 	# Tkinter
 	master = Tkinter.Tk()
 	master.title("Stimmungsfragebogen (PANAS B)")
@@ -187,7 +169,6 @@ define inline_script panasb_script
 	t2.grid(row=1,column=0,columnspan=6,padx=0,pady=0)
 	t3 = Tkinter.Label(master,text="",font=(None,12))
 	t3.grid(row=2,column=0,columnspan=6,padx=0,pady=0)
-	
 	# Rating block
 	rating_list = [("gar nicht","1"),("ein bischen","2"),("einigermaßen","3"),("erheblich","4"),("äußerst","5")]
 	for i in range(len(rating_list)):
@@ -197,7 +178,6 @@ define inline_script panasb_script
 	row_index = 4
 	subject_panasB_neg =[]
 	adjectives_neg = ["1 bekümmert","2 verärgert","3 schuldig","4 erschrocken","5 feindselig","6 gereizt","7 beschämt","8 nervös","9 durcheinander","10 ängstlich"]
-	
 	index=0
 	for adjective in adjectives_neg:
 		if index%5==0:
@@ -213,7 +193,6 @@ define inline_script panasb_script
 			r.grid(row=row_index,column=i+1,padx=1,pady=1)
 		row_index = row_index + 1
 		index=index+1
-		
 	# Positive affect
 	subject_panasB_pos =[]
 	adjectives_pos = ["11 aktiv","12 interessiert","13 freudig erregt","14 stark","15 angeregt","16 stolz","17 begeistert","18 wach","19 entschlossen","20 aufmerksam"]
@@ -231,7 +210,6 @@ define inline_script panasb_script
 			r.grid(row=row_index,column=i+1,padx=1,pady=1)
 		row_index = row_index + 1
 		index=index+1
-		
 	# Check ratings
 	def callback():
 		try:
@@ -250,17 +228,13 @@ define inline_script panasb_script
 	b.grid(row=row_index,column=0,columnspan=6,padx=5,pady=5)
 	master.protocol("WM_DELETE_WINDOW",callback)	# Prevent closing without input
 	master.wait_window()
-	
 	# Hide mouse
 	my_mouse.show_cursor(show=False)
-	
 	# Show PsychoPy window
 	win.winHandle.set_visible(True)
 	win.winHandle.set_fullscreen(True)
-	
 	# Write PANAS B variables to logfile
 	#log.write_vars(["subject_panasB_neg","subject_panasB_pos"])
-	
 	# Write timestamp
 	#log.write(clock.time())
 	__end__
@@ -272,24 +246,19 @@ define inline_script rotationImg_script
 	import random
 	from PIL import Image
 	import time
-	
-	
 	score_mag_as = 0
 	score_mag_bsk = 0
 	score_mag_bs = 0
 	score_mag_fsk = 0
 	score_mag_fs = 0
 	score_mag_vb = 0
-	
 	score_interesse_as = 0
 	score_interesse_bs = 0
 	score_interesse_bsk = 0
 	score_interesse_fsk = 0
 	score_interesse_fs = 0
 	score_interesse_vb = 0
-	
 	totalDuration=0
-	
 	def rotateImages():
 		angles = [0,90,180,270]
 		fileNames = pool.files()
@@ -300,10 +269,8 @@ define inline_script rotationImg_script
 			newImage = image.rotate(angle)
 			newImage.save(path)
 			print("%s rotate %s degrees" %(fileName, angle))
-	
 	def showExperiment(fileName,canvas):
 		global totalDuration
-		
 		startTime = time.time()
 		print("fileName: " + fileName)
 		showPic(fileName,canvas)
@@ -313,37 +280,39 @@ define inline_script rotationImg_script
 		duration = endTime - startTime
 		print("duration: "+str(duration))
 		totalDuration = totalDuration + duration
-		
 	def showPic(fileName,canvas):
 		canvas.image(getFilePath(fileName), center=True, x=20, y=-120, scale=0.7, rotation=None)
 		canvas.show()
 		clock.sleep(1000)
 		canvas.clear()
-		
 	def showMagChoiceQuestion(fileName):
 		form = buildForm(fileName, "Wie <b><i>gefällt</i></b> Ihnen dieses Muster")
-		rating_scale = RatingScale(
-		nodes=["überhaupt nicht 1","2", "3", "4", "5", "6","7sehr gut"], click_accepts=True,
-		orientation=u'horizontal', var='result')
+		#rating_scale = RatingScale(
+		#nodes=["überhaupt nicht 1","2", "3", "4", "5", "6","7sehr gut"], click_accepts=True,
+		#orientation=u'horizontal', var='result')
+		rating_scale = RatingScale( 
+		low=1, high=7, precision=1, scale= None, labels=('überhaupt nicht','sehr gut'),
+		markerColor='DarkRed', respKeys=('1','2','3','4','5','6','7'),
+		acceptKeys=('1','2','3','4','5','6','7'), var='result')
 		form.set_widget(rating_scale, (0, 2))
-		
 		form._exec()
 		print("mag:" + str(self.get("result")))
 		mag_score(fileName, self.get("result"))
 		#sum_mag_score(fileName, self.get("result"))
-		
 	def showInteressiertChoiceQuestion(fileName):
 		form = buildForm(fileName, "Wie <b><i>interessant</i></b> finden Sie dieses Muster")
-		rating_scale = RatingScale(
-		nodes=["überhaupt nicht\ninteressant 1","2", "3", "4", "5", "6","7sehr interessant"], click_accepts=True,
-		orientation=u'horizontal', var='result')
+		#rating_scale = RatingScale(
+		#nodes=["überhaupt nicht\ninteressant 1","2", "3", "4", "5", "6","7sehr interessant"], click_accepts=True,
+		#orientation=u'horizontal', var='result')
+		rating_scale = RatingScale( 
+		low=1, high=7, precision=1, scale= None, labels=('überhaupt nicht\ninteressant','sehr interessant'),
+		markerColor='DarkRed', respKeys=('1','2','3','4','5','6','7'),
+		acceptKeys=('1','2','3','4','5','6','7'), var='result')
 		form.set_widget(rating_scale, (0, 2))
-		
 		form._exec()
 		print("interessiert:" + str(self.get("result")))
 		#sum_interesse_score(fileName, self.get("result"))
 		interesse_score(fileName, self.get("result"))
-		
 	def buildForm(fileName, name):
 		form = Form(
 		cols=[1], rows=[4,1,1,1],
@@ -351,7 +320,6 @@ define inline_script rotationImg_script
 		)
 		image = ImageWidget(path=getFilePath(fileName), adjust=True, frame=False)
 		form.set_widget(image, (0, 0))
-		
 		label = Label(name+"?")
 		form.set_widget(label, (0, 1))
 		return form
@@ -363,7 +331,6 @@ define inline_script rotationImg_script
 		global score_mag_fsk
 		global score_mag_fs
 		global score_mag_vb
-		
 		if fileName.startswith("AS"):
 			score_mag_as += score
 		elif fileName.startswith("BSK"):
@@ -376,7 +343,6 @@ define inline_script rotationImg_script
 			score_mag_fs += score
 		elif fileName.startswith("VB"):
 			score_mag_vb += score
-	
 	#def sum_interesse_score(fileName, score):
 	def interesse_score(fileName, score):
 		global score_interesse_as
@@ -385,7 +351,6 @@ define inline_script rotationImg_script
 		global score_interesse_fsk
 		global score_interesse_fs
 		global score_interesse_vb
-		
 		if fileName.startswith("AS"):
 			score_interesse_as += score
 		elif fileName.startswith("BSK"):
@@ -395,10 +360,9 @@ define inline_script rotationImg_script
 		elif fileName.startswith("FSK"):
 			score_interesse_fsk += score
 		elif fileName.startswith("FS"):
-			score_interesse_fs += score	
+			score_interesse_fs += score
 		elif fileName.startswith("VB"):
-			score_interesse_vb += score	
-	
+			score_interesse_vb += score
 	def buildLog():
 	#	self.log("score_mag_as," + str(score_mag_as))
 	#	self.log("score_mag_bs," + str(score_mag_bs))
@@ -406,32 +370,25 @@ define inline_script rotationImg_script
 	#	self.log("score_mag_fs," + str(score_mag_fs))
 	#	self.log("score_mag_fsk," + str(score_mag_fsk))
 	#	self.log("score_mag_vb," + str(score_mag_vb))
-	#	
+	#
 	#	self.log("score_interesse_as," + str(score_interesse_as))
 	#	self.log("score_interesse_bs," + str(score_interesse_bs))
 	#	self.log("score_interesse_bsk," + str(score_interesse_bsk))
 	#	self.log("score_aktiv_fs," + str(score_aktiv_fs))
 	#	self.log("score_aktiv_fsk," + str(score_aktiv_fsk))
 	#	self.log("score_aktiv_vb," + str(score_aktiv_vb))
-	
 		self.log("subject_panasB_neg,subject_panasB_pos,score_mag_as,score_mag_bs,score_mag_bsk,score_mag_fs,score_mag_fsk,score_mag_vb,score_interesse_as,score_interesse_bs,score_interesse_bsk,score_interesse_fs,score_interesse_fsk,score_interesse_vb,total_duration")
 		self.log(str(exp.subject_panasB_neg)+","+str(exp.subject_panasB_pos)+","+str(score_mag_as)+","+str(score_mag_bs)+","+str(score_mag_bsk)+","+str(score_mag_fs)+","+str(score_mag_fsk)+","+str(score_mag_vb)+","+str(score_interesse_as)+","+str(score_interesse_bs)+","+str(score_interesse_bsk)+","+str(score_interesse_fs)+","+str(score_interesse_fsk)+","+str(score_interesse_vb)+","+str(totalDuration))
-		
 	def start():
 		canvas = Canvas()
 		fileNames = pool.files()
 		random.shuffle(fileNames)
-		
 		rotateImages()
-		
 		for fileName in fileNames:
 			showExperiment(fileName,canvas)
-			
 		buildLog()
-		
 	def getFilePath(fileName):
 		return exp.pool[fileName]
-			
 	start()
 	__end__
 	set _prepare ""
